@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Mansory.Views.VideosPage"
+              Title="Videos"
+             xmlns:converters="clr-namespace:Mansory.Converters;assembly=Mansory"
+             xmlns:views="clr-namespace:Mansory.Views;assembly=Mansory">
+
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <!--<converters:VideoIdToYoutubePlayerEmbedCodeConverter x:Key="VideoIdToYoutubePlayerEmbedCodeConverter"/>-->
+      <Color x:Key="redColor">#FFD90000</Color>
+      <Color x:Key="firstColor">#FFFFFF</Color>
+      <Color x:Key="darkColor">#FF686868</Color>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+
+  <ListView ItemsSource="{Binding VideosList}"
+            HasUnevenRows="True"
+            ItemTapped="ListView_OnItemTapped">
+
+    <ListView.ItemTemplate>
+      <DataTemplate>
+        <ViewCell >
+          <StackLayout Padding="10"
+                       VerticalOptions="FillAndExpand"
+                       BackgroundColor="{StaticResource blackColor}">
+
+            <Image Source="{Binding SearchResult.Snippet.Thumbnails.High.Url}"
+                   Aspect="AspectFill"
+                   HeightRequest="180"/>
+
+            <Label Text="{Binding SearchResult.Snippet.Title}"
+                   FontSize="Medium"
+                   LineBreakMode="WordWrap"
+                   TextColor="{StaticResource darkColor}">
+
+            </Label>
+
+            <Label Text="{Binding SearchResult.Snippet.PublishedAt}"
+                   Font="Medium"
+                   VerticalOptions="Start"
+                   HorizontalOptions="End"
+                   FontSize="Small"
+                   Opacity="0.5"
+                   TextColor="{StaticResource darkColor}"
+                   LineBreakMode="NoWrap"/>
+
+          </StackLayout>
+        </ViewCell>
+      </DataTemplate>
+    </ListView.ItemTemplate>
+  </ListView>
+
+</ContentPage>

@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:Mansory.Converters;assembly=Mansory"
+             x:Class="Mansory.Views.ListCarsPage"
+             Title="Cars">
+
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <converters:TagsToTextConverter x:Key="TagsToTextConverter"/>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+
+  <ListView ItemsSource="{Binding InstagramItems}"
+            HasUnevenRows="True">
+    <ListView.ItemTemplate>
+      <DataTemplate>
+        <ViewCell>
+          <ViewCell.View>
+            <StackLayout Orientation="Vertical"
+                         BackgroundColor="{StaticResource blackColor}">
+              <Image Source="{Binding Images.StandardResolution.Url}"
+                     WidthRequest="320"
+                     HeightRequest="320"
+                     Aspect="AspectFit"
+                     VerticalOptions="Start" 
+                     BackgroundColor="{StaticResource blackColor}"/>
+              <StackLayout Orientation="Vertical"
+                           Padding="10">
+                <StackLayout Orientation="Horizontal">
+                  <Image Source="like.png"
+                         HeightRequest="12"/>
+                  <Label Text="{Binding Likes.Count}"
+                         TextColor="{StaticResource firstColor}"
+                         Font="Bold"/>
+                </StackLayout>
+                <Label Text="{Binding Tags, Converter={StaticResource TagsToTextConverter}}"
+                       TextColor="{StaticResource firstColor}" />
+              </StackLayout>
+            </StackLayout>
+          </ViewCell.View>
+        </ViewCell>
+
+      </DataTemplate>
+    </ListView.ItemTemplate>
+  </ListView>
+
+</ContentPage>
